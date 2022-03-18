@@ -1,0 +1,60 @@
+﻿<Window x:Class="Caliburn.Micro.Hello.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" Background="{x:Null}"
+        Title="LoginWindow" Height="320" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid  Width="{Binding Width, ElementName=w}" Height="{Binding Height, ElementName=w}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+        <Border Grid.RowSpan="4" BorderBrush="Gray" BorderThickness="3" CornerRadius="20" Margin="10"  Opacity="1"  Background="White"></Border>
+        <Button  Name="BtnClose"  Grid.Row="0" Margin="20" 
+                 Width="48" Height="48"  BorderBrush="{x:Null}" Background="{x:Null}"
+                 HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Image Source="/Images/exit1.png"/>
+        </Button>
+        <Image Grid.Row="0"  VerticalAlignment="Center" Width="120"  Height="120" Source="/Images/login.png" />
+
+        <TextBox x:Name="UserTextBox" Text="{Binding UserInformation.UserName}"  Grid.Row="1"  Width="200" VerticalAlignment="Bottom" BorderThickness="0,0,0,1" Height="25"></TextBox>
+        <TextBlock Foreground="DarkGray"  Grid.Row="1"  IsHitTestVisible="False" HorizontalAlignment="Center" Height="25" Text="请输入用户名" VerticalAlignment="Bottom" Width="90" FontFamily="Microsoft YaHei">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=UserTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <dxe:PasswordBoxEdit  x:Name="PwdTextBox" Text="{Binding UserInformation.Password}"  
+                              Grid.Row="2"  Width="200" 
+                              VerticalAlignment="Bottom" BorderThickness="0,0,0,1" Height="25"></dxe:PasswordBoxEdit>
+        <TextBlock Foreground="DarkGray" Grid.Row="2"  IsHitTestVisible="False" HorizontalAlignment="Center" Height="25" Text="请输入密码" VerticalAlignment="Bottom" Width="90" FontFamily="Microsoft YaHei">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=PwdTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Button Name="BtnLogin"  Grid.Row="2"  Width="48" Margin="0,0,20,0"
+                BorderBrush="{x:Null}" Background="{x:Null}" 
+                Height="48"   HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Image Source="/Images/userlogin.png"/>
+        </Button>
+    </Grid>
+</Window>

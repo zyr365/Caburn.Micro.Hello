@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Caliburn.Micro.Hello.ShellView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org" xmlns:converters="clr-namespace:Caburn.Micro.Hello"
+             mc:Ignorable="d" 
+              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ShowColorConverter x:Key="ShowColorConverter" />
+    </UserControl.Resources>
+    <StackPanel>
+        <Label Content="Hello please write your name" />
+        <TextBox x:Name="Name" />
+        <Button x:Name="SayHello"
+                Content="Click Me" />
+        <Button x:Name="AddData"
+                Content="Click Me To Add Data" />
+        <Button x:Name="RemoveData"
+                Content="Remove Data" />
+        <!--SelectionMode="Single" SelectionUnit="Cell"-->
+        <DataGrid Name="dgSourceData" AutoGenerateColumns="False" ItemsSource="{Binding StudentList}" 
+                  ContextMenu="{Binding menu1}" RowHeaderWidth="30"  SelectedItem ="{Binding SelectedItems}" 
+                                cal:Message.Attach="[Event MouseRightButtonDown]=[datagrid_MouseRightButtonDown($source,$eventArgs)];" 
+                               CellEditEnding="dgSourceData_BeginningEdit" SelectionChanged="dgSourceData_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"  Binding="{ Binding Path=Name}" MinWidth="68"/>
+                <DataGridTemplateColumn  Header="Age"  MinWidth="68" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Age,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                     Foreground="{Binding AgeValidate,Converter={StaticResource ShowColorConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Id"  Binding="{ Binding Path=Id}" MinWidth="48"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,263 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             x:Class="Caliburn.Micro.Hello.HelpMeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org" 
+             xmlns:local="clr-namespace:Caliburn.Micro.Hello"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Yellow"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="LightGreen"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" Background="AliceBlue">
+        <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" >
+            <dxlc:LayoutGroup.Header>
+                <dxlc:LayoutItem Label="Help Documentation" Background="CadetBlue" />
+            </dxlc:LayoutGroup.Header>
+            <dxlc:LayoutItem Label="Please click the image position to get help documents." />
+        </dxlc:LayoutGroup>
+        <WrapPanel>
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[BuildClick()]" />
+                <Label Content="框架搭建"/>
+            </StackPanel>
+        </Border>
+        
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ExampleFirstClick()]" />
+                <Label Content="CM入门实例1"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ExampleSecondClick()]" />
+                <Label Content="CM入门实例2"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[RegularClick()]" />
+                <Label Content="正则限制输入有效性"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[DevClick()]" />
+                <Label Content="Dev安装使用教程"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[DatagridClick()]" />
+                <Label Content="datagrid增加行号"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[DispalyClick()]" />
+                <Label Content="TextEdit不以科学计数法显示"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ComboboxClick()]" />
+                <Label Content="combobox数据绑定"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[SubWindowClick()]" />
+                <Label Content="显示子窗体并获取结果"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[MefClick()]" />
+                <Label Content="利用Mef加载界面"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[EventClick()]" />
+                <Label Content="事件发布与订阅"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[CaliburnClick()]" />
+                <Label Content="CM框架搭建官方版"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ChartControlClick()]" />
+                <Label Content="ChartControl用法指南"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical" cal:Message.Attach="[Event MouseLeftButtonUp]=[ComboBoxEditClick()]">
+                <Image Source="/Images/build.png" />
+                <Label Content="ComboBoxEdit数据绑定及模糊匹配"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ProjectClick()]" />
+                <Label Content="WPF项目实战"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ToolkitClick()]" />
+                <Label Content="WPF Toolkit"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[log4netClick()]" />
+                <Label Content="Common.Logging和log4net"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ExampleThreeClick()]" />
+                <Label Content="CM入门实例3"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ObservableCollectionClick()]" />
+                <Label Content="ObservableCollection集合重写"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[Project2Click()]" />
+                <Label Content="项目实战2"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[MatchClick()]" />
+                <Label Content="模板匹配"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[BackgroudClick()]" />
+                <Label Content="DataGrid改变背景色"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ValueConverterClick()]" />
+                <Label Content="IValueConverter接口用法举例"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[IndicatorLightClick()]" />
+                <Label Content="指示灯"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[FTPClick()]" />
+                <Label Content="FTP上传|下载|删除"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[MemorandumClick()]" />
+                <Label Content="备忘录"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[MenuClick()]" />
+                <Label Content="右键菜单"/>
+            </StackPanel>
+        </Border>
+
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/Images/build.png" 
+                      cal:Message.Attach="[Event MouseLeftButtonUp]=[ConductClick()]" />
+                <Label Content="多页面管理"/>
+            </StackPanel>
+        </Border>
+           
+    </WrapPanel>
+    </StackPanel>
+</UserControl>

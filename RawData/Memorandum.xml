@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MemorandumModels>
+<MemorandumModel>
+    <Title>买菜</Title>
+    <EvenType>生活事</EvenType>
+    <DateTime>2022.02.25 16:32</DateTime>
+    <IsComplete>false</IsComplete>
+</MemorandumModel>
+<MemorandumModel>
+    <Title>逛街</Title>
+    <EvenType>生活事</EvenType>
+    <DateTime>2022.02.16 11:32</DateTime>
+    <IsComplete>true</IsComplete>
+</MemorandumModel>
+	<MemorandumModel>
+		<Title>写代码</Title>
+		<EvenType>工作事</EvenType>
+		<DateTime>2022.02.20 11:50</DateTime>
+		<IsComplete>false</IsComplete>
+	</MemorandumModel>
+	<MemorandumModel>
+		<Title>健身</Title>
+		<EvenType>生活事</EvenType>
+		<DateTime>2022.02.27 17:32</DateTime>
+		<IsComplete>false</IsComplete>
+	</MemorandumModel>
+	<MemorandumModel>
+		<Title>约会</Title>
+		<EvenType>其它</EvenType>
+		<DateTime>2022.03.16 20:32</DateTime>
+		<IsComplete>false</IsComplete>
+	</MemorandumModel>
+</MemorandumModels>

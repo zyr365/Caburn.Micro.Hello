@@ -1,0 +1,115 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Caliburn.Micro.Hello"
+              xmlns:cal="http://www.caliburnproject.org" 
+              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:xctk="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Caliburn.Micro.Hello.MemorandumView" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <local:FontColorConverter x:Key="FontColorConverter" />
+        <local:RowColorConverter x:Key="RowColorConverter" />
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <DataTemplate x:Key="rowIndicatorContentTemplate">
+            <StackPanel VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding RowHandle.Value}"
+                           TextAlignment="Center" 
+                           Foreground="Black"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBox Text="{Binding TitleText}"  Margin="15,5" 
+                     cal:Message.Attach="[Event GotFocus] = [Action GotFocus];[Event LostFocus] = [Action LostFocus]" 
+                     Foreground="{Binding TitleColor, Converter={StaticResource FontColorConverter}}"/>
+            <ComboBox ItemsSource="{Binding EvenTypeList}" Margin="15,5"  SelectedIndex="{Binding SelectedIndex}" MinWidth="100" Foreground="Black"/>
+            <!--<DatePicker Text="{Binding DataTimeContext,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        SelectedDate="{x:Static sys:DateTime.Now}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,5"  />-->
+            <xctk1:DateTimeUpDown x:Name="_minimum"  Format="Custom" FormatString="yyyy/MM/dd HH:mm" 
+                                  Text="{Binding DataTimeContext}" 
+                                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  Value="2016/01/01T12:00"  Margin="15,5"/>
+
+            <CheckBox IsChecked="{Binding IsCompleteStatus}" Margin="15,5" Content="是否完成" Foreground="Black"/>
+            <Button Margin="15,5" MinWidth="60" cal:Message.Attach="[Event Click] = [Action SearchClick]" >
+                <WrapPanel >
+                    <Image Source="/Images/search.png" Width="15" Height="15" />
+                    <TextBlock Text="查找" VerticalAlignment="Center" />
+                </WrapPanel>
+            </Button>
+        </StackPanel>
+        <Border BorderBrush="LightBlue" CornerRadius="2" BorderThickness="2" >
+        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True"  AllowLiveDataShaping="True" 
+                         cal:Message.Attach="[Event SelectedItemChanged] = [Action GridControl_SelectedItemChanged($source,$event)];" 
+                         ItemsSource="{Binding MemorandumShowList}" SelectedItem="{Binding SelectedItem}" 
+                         Height="330" Foreground="Black">
+            <dxg:GridControl.View>
+                    <dxg:TableView ShowTotalSummary="True" AllowMoveColumnToDropArea="False" 
+                               AllowGrouping="False" AutoExpandOnDrag="False" 
+                               ShowDragDropHint="False" ShowGroupPanel="False" 
+                               AllowColumnMoving="False" AllowResizing="False" Foreground="Black"
+                               RowIndicatorContentTemplate="{StaticResource rowIndicatorContentTemplate}" >
+                        <dxg:TableView.RowStyle>
+                            <Style TargetType="{x:Type dxg:RowControl}">
+                                <Setter Property="dxg:GridViewBase.Background" Value="{Binding DateTime,Converter={StaticResource RowColorConverter}}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True">
+                                        <Setter Property="Background" Value="Gray" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:TableView.RowStyle>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+                <dxg:GridColumn  Header="标题" FieldName="Title"   MinWidth="100"/>
+                <dxg:GridColumn  Header="类型" FieldName="EvenType"  MinWidth="100"/>
+                <dxg:GridColumn  Header="提醒时间" FieldName="DateTime" MinWidth="120" >
+                    <dxg:GridColumn.EditSettings>
+                        <!--<xctk:DateEditSettings DisplayFormat="dd-MM-yyyy HH:mm:ss.fff"/>-->
+                        <xctk:DateEditSettings DisplayFormat="yyyy-MM-dd HH:mm"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn  Header="状态" FieldName="IsComplete"  MinWidth="100"/>
+        </dxg:GridControl>
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectAll}" Margin="35,5" Content="全选"/>
+            <Button Margin="35,5" MinWidth="60" cal:Message.Attach="[Event Click] = [Action DeleteClick]" >
+                <WrapPanel >
+                    <Image Source="/Images/delete.png" Width="15" Height="15" />
+                    <TextBlock Text="删除" VerticalAlignment="Center" />
+                </WrapPanel>
+            </Button>
+            <Button Margin="35,5" MinWidth="60" Name="Add">
+                <WrapPanel >
+                    <Image Source="/Images/add.png" Width="15" Height="15" />
+                    <TextBlock Text="添加" VerticalAlignment="Center" />
+                </WrapPanel>
+            </Button>
+            <Button Margin="35,5" MinWidth="60" Name="Modify">
+                <WrapPanel >
+                    <Image Source="/Images/modify.png" Width="15" Height="15"/>
+                    <TextBlock Text="修改" VerticalAlignment="Center" />
+                </WrapPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
